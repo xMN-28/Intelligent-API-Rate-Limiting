@@ -1,0 +1,29 @@
+upstream: http://localhost:8001
+redis_url: redis://localhost:6379/0
+policy: adaptive
+rate: 100
+burst_seconds: 0.25
+sliding_window: 1
+inflight_limit: 128
+upstream_timeout: 2
+clients:
+  alice: demo-alice
+  bob: demo-bob
+  carol: demo-carol
+backend_workers: 8
+backend_queue: 32
+service_time: 0.04
+service_jitter: 0.1
+controller:
+  interval: 1
+  window: 5
+  alpha: 0.2
+  latency_target: 0.2
+  error_threshold: 0.02
+  decrease_factor: 0.8
+  increase_step: 5
+  healthy_evaluations: 3
+  demand_fraction: 0.8
+  min_samples: 30
+  min_rate: 10
+  max_rate: 500

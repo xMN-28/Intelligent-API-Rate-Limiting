@@ -1,0 +1,590 @@
+{
+  "run-000": {
+    "settings": {
+      "upstream": "http://127.0.0.1:18001",
+      "redis_url": "redis://127.0.0.1:16379/0",
+      "policy": "sliding_window",
+      "rate": 24.0,
+      "burst_seconds": 0.25,
+      "sliding_window": 1.0,
+      "namespace": "trial-8f2615b1af26458a92a81877334d93d3",
+      "inflight_limit": 64,
+      "upstream_timeout": 2.0,
+      "max_body_bytes": 1048576,
+      "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\portable-verified\\evaluation\\run-000\\decisions.jsonl",
+      "backend_workers": 4,
+      "backend_queue": 8,
+      "service_time": 0.1,
+      "service_jitter": 0.1,
+      "controller": {
+        "interval": 1.0,
+        "window": 5.0,
+        "alpha": 0.2,
+        "latency_target": 0.3,
+        "error_threshold": 0.02,
+        "decrease_factor": 0.8,
+        "increase_step": 5.0,
+        "healthy_evaluations": 3,
+        "demand_fraction": 0.8,
+        "min_samples": 30,
+        "min_rate": 10.0,
+        "max_rate": 120.0
+      }
+    },
+    "clients": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "scenario": {
+      "warmup": 3.0,
+      "max_inflight": 512,
+      "max_launch_lag": 0.1,
+      "fairness_comparable": false,
+      "phases": [
+        {
+          "name": "normal",
+          "duration": 6.0,
+          "rate": 30.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "burst",
+          "duration": 3.0,
+          "rate": 100.0,
+          "end_rate": null,
+          "workers": null,
+          "service_time": null,
+          "weights": null
+        },
+        {
+          "name": "degraded",
+          "duration": 9.0,
+          "rate": 80.0,
+          "end_rate": null,
+          "workers": 1,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "recovered",
+          "duration": 12.0,
+          "rate": 60.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        }
+      ]
+    },
+    "seed": 42,
+    "scenario_name": "portable-demo",
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.9",
+      "cpu_count": 16,
+      "memory_bytes": 33485795328,
+      "commit": null,
+      "dirty": null
+    },
+    "started_at": 1792862564.1057348,
+    "complete": true,
+    "gateway_url": "http://127.0.0.1:18000",
+    "backend_url": "http://127.0.0.1:18001",
+    "measured_start_wall": 1792862567.4932654,
+    "finished_at": 1792862597.6289
+  },
+  "run-001": {
+    "settings": {
+      "upstream": "http://127.0.0.1:18001",
+      "redis_url": "redis://127.0.0.1:16379/0",
+      "policy": "token_bucket",
+      "rate": 24.0,
+      "burst_seconds": 0.25,
+      "sliding_window": 1.0,
+      "namespace": "trial-8cde3577207547208999b73036dff73e",
+      "inflight_limit": 64,
+      "upstream_timeout": 2.0,
+      "max_body_bytes": 1048576,
+      "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\portable-verified\\evaluation\\run-001\\decisions.jsonl",
+      "backend_workers": 4,
+      "backend_queue": 8,
+      "service_time": 0.1,
+      "service_jitter": 0.1,
+      "controller": {
+        "interval": 1.0,
+        "window": 5.0,
+        "alpha": 0.2,
+        "latency_target": 0.3,
+        "error_threshold": 0.02,
+        "decrease_factor": 0.8,
+        "increase_step": 5.0,
+        "healthy_evaluations": 3,
+        "demand_fraction": 0.8,
+        "min_samples": 30,
+        "min_rate": 10.0,
+        "max_rate": 120.0
+      }
+    },
+    "clients": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "scenario": {
+      "warmup": 3.0,
+      "max_inflight": 512,
+      "max_launch_lag": 0.1,
+      "fairness_comparable": false,
+      "phases": [
+        {
+          "name": "normal",
+          "duration": 6.0,
+          "rate": 30.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "burst",
+          "duration": 3.0,
+          "rate": 100.0,
+          "end_rate": null,
+          "workers": null,
+          "service_time": null,
+          "weights": null
+        },
+        {
+          "name": "degraded",
+          "duration": 9.0,
+          "rate": 80.0,
+          "end_rate": null,
+          "workers": 1,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "recovered",
+          "duration": 12.0,
+          "rate": 60.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        }
+      ]
+    },
+    "seed": 42,
+    "scenario_name": "portable-demo",
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.9",
+      "cpu_count": 16,
+      "memory_bytes": 33485795328,
+      "commit": null,
+      "dirty": null
+    },
+    "started_at": 1792862599.6085422,
+    "complete": true,
+    "gateway_url": "http://127.0.0.1:18000",
+    "backend_url": "http://127.0.0.1:18001",
+    "measured_start_wall": 1792862602.9955676,
+    "finished_at": 1792862633.0621343
+  },
+  "run-002": {
+    "settings": {
+      "upstream": "http://127.0.0.1:18001",
+      "redis_url": "redis://127.0.0.1:16379/0",
+      "policy": "token_bucket",
+      "rate": 36.0,
+      "burst_seconds": 0.25,
+      "sliding_window": 1.0,
+      "namespace": "trial-a0b9c4f162154acaba82da8b0bc83659",
+      "inflight_limit": 64,
+      "upstream_timeout": 2.0,
+      "max_body_bytes": 1048576,
+      "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\portable-verified\\evaluation\\run-002\\decisions.jsonl",
+      "backend_workers": 4,
+      "backend_queue": 8,
+      "service_time": 0.1,
+      "service_jitter": 0.1,
+      "controller": {
+        "interval": 1.0,
+        "window": 5.0,
+        "alpha": 0.2,
+        "latency_target": 0.3,
+        "error_threshold": 0.02,
+        "decrease_factor": 0.8,
+        "increase_step": 5.0,
+        "healthy_evaluations": 3,
+        "demand_fraction": 0.8,
+        "min_samples": 30,
+        "min_rate": 10.0,
+        "max_rate": 120.0
+      }
+    },
+    "clients": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "scenario": {
+      "warmup": 3.0,
+      "max_inflight": 512,
+      "max_launch_lag": 0.1,
+      "fairness_comparable": false,
+      "phases": [
+        {
+          "name": "normal",
+          "duration": 6.0,
+          "rate": 30.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "burst",
+          "duration": 3.0,
+          "rate": 100.0,
+          "end_rate": null,
+          "workers": null,
+          "service_time": null,
+          "weights": null
+        },
+        {
+          "name": "degraded",
+          "duration": 9.0,
+          "rate": 80.0,
+          "end_rate": null,
+          "workers": 1,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "recovered",
+          "duration": 12.0,
+          "rate": 60.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        }
+      ]
+    },
+    "seed": 42,
+    "scenario_name": "portable-demo",
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.9",
+      "cpu_count": 16,
+      "memory_bytes": 33485795328,
+      "commit": null,
+      "dirty": null
+    },
+    "started_at": 1792862635.060575,
+    "complete": true,
+    "gateway_url": "http://127.0.0.1:18000",
+    "backend_url": "http://127.0.0.1:18001",
+    "measured_start_wall": 1792862638.4458122,
+    "finished_at": 1792862668.5905051
+  },
+  "run-003": {
+    "settings": {
+      "upstream": "http://127.0.0.1:18001",
+      "redis_url": "redis://127.0.0.1:16379/0",
+      "policy": "sliding_window",
+      "rate": 36.0,
+      "burst_seconds": 0.25,
+      "sliding_window": 1.0,
+      "namespace": "trial-b04cb504f0bd45c7b35850ca335dcbd6",
+      "inflight_limit": 64,
+      "upstream_timeout": 2.0,
+      "max_body_bytes": 1048576,
+      "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\portable-verified\\evaluation\\run-003\\decisions.jsonl",
+      "backend_workers": 4,
+      "backend_queue": 8,
+      "service_time": 0.1,
+      "service_jitter": 0.1,
+      "controller": {
+        "interval": 1.0,
+        "window": 5.0,
+        "alpha": 0.2,
+        "latency_target": 0.3,
+        "error_threshold": 0.02,
+        "decrease_factor": 0.8,
+        "increase_step": 5.0,
+        "healthy_evaluations": 3,
+        "demand_fraction": 0.8,
+        "min_samples": 30,
+        "min_rate": 10.0,
+        "max_rate": 120.0
+      }
+    },
+    "clients": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "scenario": {
+      "warmup": 3.0,
+      "max_inflight": 512,
+      "max_launch_lag": 0.1,
+      "fairness_comparable": false,
+      "phases": [
+        {
+          "name": "normal",
+          "duration": 6.0,
+          "rate": 30.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "burst",
+          "duration": 3.0,
+          "rate": 100.0,
+          "end_rate": null,
+          "workers": null,
+          "service_time": null,
+          "weights": null
+        },
+        {
+          "name": "degraded",
+          "duration": 9.0,
+          "rate": 80.0,
+          "end_rate": null,
+          "workers": 1,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "recovered",
+          "duration": 12.0,
+          "rate": 60.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        }
+      ]
+    },
+    "seed": 42,
+    "scenario_name": "portable-demo",
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.9",
+      "cpu_count": 16,
+      "memory_bytes": 33485795328,
+      "commit": null,
+      "dirty": null
+    },
+    "started_at": 1792862670.5911362,
+    "complete": true,
+    "gateway_url": "http://127.0.0.1:18000",
+    "backend_url": "http://127.0.0.1:18001",
+    "measured_start_wall": 1792862673.9867535,
+    "finished_at": 1792862704.1469162
+  },
+  "run-004": {
+    "settings": {
+      "upstream": "http://127.0.0.1:18001",
+      "redis_url": "redis://127.0.0.1:16379/0",
+      "policy": "none",
+      "rate": 24.0,
+      "burst_seconds": 0.25,
+      "sliding_window": 1.0,
+      "namespace": "trial-15a9faacecaf41d7a8c4a92e8eb2dc90",
+      "inflight_limit": 64,
+      "upstream_timeout": 2.0,
+      "max_body_bytes": 1048576,
+      "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\portable-verified\\evaluation\\run-004\\decisions.jsonl",
+      "backend_workers": 4,
+      "backend_queue": 8,
+      "service_time": 0.1,
+      "service_jitter": 0.1,
+      "controller": {
+        "interval": 1.0,
+        "window": 5.0,
+        "alpha": 0.2,
+        "latency_target": 0.3,
+        "error_threshold": 0.02,
+        "decrease_factor": 0.8,
+        "increase_step": 5.0,
+        "healthy_evaluations": 3,
+        "demand_fraction": 0.8,
+        "min_samples": 30,
+        "min_rate": 10.0,
+        "max_rate": 120.0
+      }
+    },
+    "clients": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "scenario": {
+      "warmup": 3.0,
+      "max_inflight": 512,
+      "max_launch_lag": 0.1,
+      "fairness_comparable": false,
+      "phases": [
+        {
+          "name": "normal",
+          "duration": 6.0,
+          "rate": 30.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "burst",
+          "duration": 3.0,
+          "rate": 100.0,
+          "end_rate": null,
+          "workers": null,
+          "service_time": null,
+          "weights": null
+        },
+        {
+          "name": "degraded",
+          "duration": 9.0,
+          "rate": 80.0,
+          "end_rate": null,
+          "workers": 1,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "recovered",
+          "duration": 12.0,
+          "rate": 60.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        }
+      ]
+    },
+    "seed": 42,
+    "scenario_name": "portable-demo",
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.9",
+      "cpu_count": 16,
+      "memory_bytes": 33485795328,
+      "commit": null,
+      "dirty": null
+    },
+    "started_at": 1792862706.122535,
+    "complete": true,
+    "gateway_url": "http://127.0.0.1:18000",
+    "backend_url": "http://127.0.0.1:18001",
+    "measured_start_wall": 1792862709.5113947,
+    "finished_at": 1792862739.745263
+  },
+  "run-005": {
+    "settings": {
+      "upstream": "http://127.0.0.1:18001",
+      "redis_url": "redis://127.0.0.1:16379/0",
+      "policy": "adaptive",
+      "rate": 24.0,
+      "burst_seconds": 0.25,
+      "sliding_window": 1.0,
+      "namespace": "trial-a3a76b494eee48df8eeec4a1bdc7fe40",
+      "inflight_limit": 64,
+      "upstream_timeout": 2.0,
+      "max_body_bytes": 1048576,
+      "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\portable-verified\\evaluation\\run-005\\decisions.jsonl",
+      "backend_workers": 4,
+      "backend_queue": 8,
+      "service_time": 0.1,
+      "service_jitter": 0.1,
+      "controller": {
+        "interval": 1.0,
+        "window": 5.0,
+        "alpha": 0.2,
+        "latency_target": 0.3,
+        "error_threshold": 0.02,
+        "decrease_factor": 0.8,
+        "increase_step": 5.0,
+        "healthy_evaluations": 3,
+        "demand_fraction": 0.8,
+        "min_samples": 30,
+        "min_rate": 10.0,
+        "max_rate": 120.0
+      }
+    },
+    "clients": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "scenario": {
+      "warmup": 3.0,
+      "max_inflight": 512,
+      "max_launch_lag": 0.1,
+      "fairness_comparable": false,
+      "phases": [
+        {
+          "name": "normal",
+          "duration": 6.0,
+          "rate": 30.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "burst",
+          "duration": 3.0,
+          "rate": 100.0,
+          "end_rate": null,
+          "workers": null,
+          "service_time": null,
+          "weights": null
+        },
+        {
+          "name": "degraded",
+          "duration": 9.0,
+          "rate": 80.0,
+          "end_rate": null,
+          "workers": 1,
+          "service_time": 0.1,
+          "weights": null
+        },
+        {
+          "name": "recovered",
+          "duration": 12.0,
+          "rate": 60.0,
+          "end_rate": null,
+          "workers": 4,
+          "service_time": 0.1,
+          "weights": null
+        }
+      ]
+    },
+    "seed": 42,
+    "scenario_name": "portable-demo",
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.9",
+      "cpu_count": 16,
+      "memory_bytes": 33485795328,
+      "commit": null,
+      "dirty": null
+    },
+    "started_at": 1792862741.7252216,
+    "complete": true,
+    "gateway_url": "http://127.0.0.1:18000",
+    "backend_url": "http://127.0.0.1:18001",
+    "measured_start_wall": 1792862745.1197486,
+    "finished_at": 1792862775.1481066
+  }
+}

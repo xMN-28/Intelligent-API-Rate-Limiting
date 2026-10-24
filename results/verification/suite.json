@@ -1,0 +1,48 @@
+{
+  "calibrated": true,
+  "scale": 0.3,
+  "schedule": [
+    {
+      "repetition": 0,
+      "scenario": "portable-demo",
+      "policy": "sliding_window",
+      "rate": 24.0,
+      "seed": 42
+    },
+    {
+      "repetition": 0,
+      "scenario": "portable-demo",
+      "policy": "token_bucket",
+      "rate": 24.0,
+      "seed": 42
+    },
+    {
+      "repetition": 0,
+      "scenario": "portable-demo",
+      "policy": "token_bucket",
+      "rate": 36.0,
+      "seed": 42
+    },
+    {
+      "repetition": 0,
+      "scenario": "portable-demo",
+      "policy": "sliding_window",
+      "rate": 36.0,
+      "seed": 42
+    },
+    {
+      "repetition": 0,
+      "scenario": "portable-demo",
+      "policy": "none",
+      "rate": 24.0,
+      "seed": 42
+    },
+    {
+      "repetition": 0,
+      "scenario": "portable-demo",
+      "policy": "adaptive",
+      "rate": 24.0,
+      "seed": 42
+    }
+  ]
+}

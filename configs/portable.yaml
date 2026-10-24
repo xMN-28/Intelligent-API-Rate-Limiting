@@ -1,0 +1,21 @@
+# Lower-capacity experiment for hosts where the generator cannot sustain 240–400 RPS.
+upstream: http://localhost:8001
+redis_url: redis://localhost:6379/0
+policy: adaptive
+rate: 20
+burst_seconds: 0.25
+sliding_window: 1
+inflight_limit: 64
+upstream_timeout: 2
+clients:
+  alice: demo-alice
+  bob: demo-bob
+  carol: demo-carol
+backend_workers: 4
+backend_queue: 8
+service_time: 0.1
+service_jitter: 0.1
+controller:
+  latency_target: 0.3
+  min_rate: 10
+  max_rate: 120

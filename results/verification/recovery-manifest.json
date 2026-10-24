@@ -1,0 +1,98 @@
+{
+  "settings": {
+    "upstream": "http://127.0.0.1:18001",
+    "redis_url": "redis://127.0.0.1:16379/0",
+    "policy": "adaptive",
+    "rate": 20.0,
+    "burst_seconds": 0.25,
+    "sliding_window": 1.0,
+    "namespace": "trial-333117e3d38f4295903b312b0f52badf",
+    "inflight_limit": 64,
+    "upstream_timeout": 2.0,
+    "max_body_bytes": 1048576,
+    "decision_log": "D:\\Coding shit\\projects\\Intelligent API Rate Limiting\\results\\runs\\recovery-verified\\decisions.jsonl",
+    "backend_workers": 4,
+    "backend_queue": 8,
+    "service_time": 0.1,
+    "service_jitter": 0.1,
+    "controller": {
+      "interval": 1.0,
+      "window": 5.0,
+      "alpha": 0.2,
+      "latency_target": 0.3,
+      "error_threshold": 0.02,
+      "decrease_factor": 0.8,
+      "increase_step": 5.0,
+      "healthy_evaluations": 3,
+      "demand_fraction": 0.8,
+      "min_samples": 30,
+      "min_rate": 10.0,
+      "max_rate": 120.0
+    }
+  },
+  "clients": [
+    "alice",
+    "bob",
+    "carol"
+  ],
+  "scenario": {
+    "warmup": 10.0,
+    "max_inflight": 512,
+    "max_launch_lag": 0.1,
+    "fairness_comparable": false,
+    "phases": [
+      {
+        "name": "normal",
+        "duration": 20.0,
+        "rate": 30.0,
+        "end_rate": null,
+        "workers": 4,
+        "service_time": 0.1,
+        "weights": null
+      },
+      {
+        "name": "burst",
+        "duration": 10.0,
+        "rate": 100.0,
+        "end_rate": null,
+        "workers": null,
+        "service_time": null,
+        "weights": null
+      },
+      {
+        "name": "degraded",
+        "duration": 30.0,
+        "rate": 80.0,
+        "end_rate": null,
+        "workers": 1,
+        "service_time": 0.1,
+        "weights": null
+      },
+      {
+        "name": "recovered",
+        "duration": 40.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 4,
+        "service_time": 0.1,
+        "weights": null
+      }
+    ]
+  },
+  "seed": 42,
+  "scenario_name": "portable-demo",
+  "machine": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.9",
+    "cpu_count": 16,
+    "memory_bytes": 33485795328,
+    "commit": null,
+    "dirty": null
+  },
+  "started_at": 1792862883.8824348,
+  "complete": true,
+  "gateway_url": "http://127.0.0.1:18000",
+  "backend_url": "http://127.0.0.1:18001",
+  "measured_start_wall": 1792862894.2660506,
+  "finished_at": 1792862994.551409
+}

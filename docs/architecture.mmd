@@ -1,0 +1,13 @@
+flowchart LR
+    T[Python open-arrival traffic generator] -->|HTTP and client API key| G[FastAPI gateway]
+    G <-->|Atomic global and client admission| R[(Redis)]
+    G -->|Bounded forwarding| B[Bounded backend API]
+    B -->|Responses| G
+    G -->|Upstream observations| C[EWMA and AIMD controller inside gateway]
+    C -->|Publish rate budget| R
+    G -->|Metrics| P[Prometheus]
+    B -->|Metrics| P
+    P --> D[Provisioned Grafana]
+    T --> A[CSV and manifests]
+    C -->|Decision log| A
+    A --> V[Python charts and report]

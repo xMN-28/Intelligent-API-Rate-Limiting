@@ -1,0 +1,213 @@
+{
+  "safe_offered_rps": 40.0,
+  "static_rates": [
+    24.0,
+    36.0
+  ],
+  "latency_target": 0.3,
+  "saturated_upper_bound_found": true,
+  "settings": {
+    "upstream": "http://localhost:8001",
+    "redis_url": "redis://127.0.0.1:16379/0",
+    "policy": "adaptive",
+    "rate": 20.0,
+    "burst_seconds": 0.25,
+    "sliding_window": 1.0,
+    "namespace": "demo",
+    "inflight_limit": 64,
+    "upstream_timeout": 2.0,
+    "max_body_bytes": 1048576,
+    "decision_log": "results/runs/live/decisions.jsonl",
+    "backend_workers": 4,
+    "backend_queue": 8,
+    "service_time": 0.1,
+    "service_jitter": 0.1,
+    "controller": {
+      "interval": 1.0,
+      "window": 5.0,
+      "alpha": 0.2,
+      "latency_target": 0.3,
+      "error_threshold": 0.02,
+      "decrease_factor": 0.8,
+      "increase_step": 5.0,
+      "healthy_evaluations": 3,
+      "demand_fraction": 0.8,
+      "min_samples": 30,
+      "min_rate": 10.0,
+      "max_rate": 120.0
+    }
+  },
+  "runs": [
+    {
+      "run": "results\\runs\\portable-calibration\\rate-10",
+      "policy": "none",
+      "rate": 20.0,
+      "scenario": "calibration",
+      "complete": true,
+      "duration": 4.0,
+      "offered": 42,
+      "launched": 42,
+      "admitted": 42,
+      "admission_unknown": 0,
+      "completed": 42,
+      "outcomes": {
+        "success": 42
+      },
+      "success_rps": 10.5,
+      "goodput_rps": 10.5,
+      "latency_p50": 0.10899999999674037,
+      "latency_p95": 0.125,
+      "latency_p99": 0.125,
+      "rejection_p95": null,
+      "admission_overhead_p95_ms": 0.0,
+      "launch_lag_p99": 0.022000000045154594,
+      "per_client_success_rps": {
+        "alice": 4.0,
+        "bob": 3.75,
+        "carol": 2.75
+      },
+      "jain_fairness": null,
+      "valid_generator": true,
+      "recovery_seconds": null,
+      "passes": true,
+      "offered_rate": 10.0
+    },
+    {
+      "run": "results\\runs\\portable-calibration\\rate-20",
+      "policy": "none",
+      "rate": 20.0,
+      "scenario": "calibration",
+      "complete": true,
+      "duration": 4.0,
+      "offered": 80,
+      "launched": 80,
+      "admitted": 80,
+      "admission_unknown": 0,
+      "completed": 80,
+      "outcomes": {
+        "success": 80
+      },
+      "success_rps": 20.0,
+      "goodput_rps": 20.0,
+      "latency_p50": 0.10899999999674037,
+      "latency_p95": 0.125,
+      "latency_p99": 0.13999999999941792,
+      "rejection_p95": null,
+      "admission_overhead_p95_ms": 4.9999999999997156e-05,
+      "launch_lag_p99": 0.024999999871943145,
+      "per_client_success_rps": {
+        "alice": 7.0,
+        "bob": 6.75,
+        "carol": 6.25
+      },
+      "jain_fairness": null,
+      "valid_generator": true,
+      "recovery_seconds": null,
+      "passes": true,
+      "offered_rate": 20.0
+    },
+    {
+      "run": "results\\runs\\portable-calibration\\rate-30",
+      "policy": "none",
+      "rate": 20.0,
+      "scenario": "calibration",
+      "complete": true,
+      "duration": 4.0,
+      "offered": 122,
+      "launched": 122,
+      "admitted": 122,
+      "admission_unknown": 0,
+      "completed": 122,
+      "outcomes": {
+        "success": 122
+      },
+      "success_rps": 30.5,
+      "goodput_rps": 30.5,
+      "latency_p50": 0.10900000000401633,
+      "latency_p95": 0.13924999999944684,
+      "latency_p99": 0.14100000000325963,
+      "rejection_p95": null,
+      "admission_overhead_p95_ms": 0.0,
+      "launch_lag_p99": 0.022000000044718037,
+      "per_client_success_rps": {
+        "alice": 11.0,
+        "bob": 9.75,
+        "carol": 9.75
+      },
+      "jain_fairness": null,
+      "valid_generator": true,
+      "recovery_seconds": null,
+      "passes": true,
+      "offered_rate": 30.0
+    },
+    {
+      "run": "results\\runs\\portable-calibration\\rate-40",
+      "policy": "none",
+      "rate": 20.0,
+      "scenario": "calibration",
+      "complete": true,
+      "duration": 4.0,
+      "offered": 160,
+      "launched": 160,
+      "admitted": 160,
+      "admission_unknown": 0,
+      "completed": 160,
+      "outcomes": {
+        "success": 160
+      },
+      "success_rps": 40.0,
+      "goodput_rps": 39.5,
+      "latency_p50": 0.21899999999732245,
+      "latency_p95": 0.26599999999598367,
+      "latency_p99": 0.2942999999987659,
+      "rejection_p95": null,
+      "admission_overhead_p95_ms": 0.0,
+      "launch_lag_p99": 0.02199999982556619,
+      "per_client_success_rps": {
+        "alice": 15.5,
+        "bob": 12.5,
+        "carol": 12.0
+      },
+      "jain_fairness": null,
+      "valid_generator": true,
+      "recovery_seconds": null,
+      "passes": true,
+      "offered_rate": 40.0
+    },
+    {
+      "run": "results\\runs\\portable-calibration\\rate-60",
+      "policy": "none",
+      "rate": 20.0,
+      "scenario": "calibration",
+      "complete": true,
+      "duration": 4.0,
+      "offered": 240,
+      "launched": 240,
+      "admitted": 240,
+      "admission_unknown": 0,
+      "completed": 240,
+      "outcomes": {
+        "backend_error": 80,
+        "success": 160
+      },
+      "success_rps": 40.0,
+      "goodput_rps": 26.0,
+      "latency_p50": 0.2969999999986612,
+      "latency_p95": 0.3280000000013388,
+      "latency_p99": 0.34399999999732245,
+      "rejection_p95": null,
+      "admission_overhead_p95_ms": 0.0,
+      "launch_lag_p99": 0.025666666119213914,
+      "per_client_success_rps": {
+        "alice": 14.75,
+        "bob": 11.5,
+        "carol": 13.75
+      },
+      "jain_fairness": null,
+      "valid_generator": true,
+      "recovery_seconds": null,
+      "passes": false,
+      "offered_rate": 60.0
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "run": "recovery-verified",
+  "policy": "adaptive",
+  "rate": 20.0,
+  "scenario": "portable-demo",
+  "complete": true,
+  "duration": 100.0,
+  "offered": 6400,
+  "launched": 6400,
+  "admitted": 2198,
+  "admission_unknown": 0,
+  "completed": 6400,
+  "outcomes": {
+    "rejected": 4202,
+    "success": 2092,
+    "backend_error": 106
+  },
+  "success_rps": 20.92,
+  "goodput_rps": 18.79,
+  "latency_p50": 0.125,
+  "latency_p95": 0.6482000000014494,
+  "latency_p99": 0.9393500000012158,
+  "rejection_p95": 0.01600000000325963,
+  "admission_overhead_p95_ms": 2.1076000000000006,
+  "launch_lag_p99": 0.022499999999126885,
+  "per_client_success_rps": {
+    "alice": 6.88,
+    "bob": 7.09,
+    "carol": 6.95
+  },
+  "jain_fairness": null,
+  "valid_generator": true,
+  "recovery_seconds": null,
+  "source_csv_sha256": "4596e4901d79b4705ce325fca5eb34c72893089acc0c0eb19a0c3726317f16b4"
+}

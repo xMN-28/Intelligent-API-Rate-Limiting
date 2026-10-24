@@ -1,0 +1,45 @@
+steady:
+  phases:
+    - {name: steady, duration: 300, rate: 90}
+ramp:
+  phases:
+    - {name: ramp, duration: 300, rate: 30, end_rate: 400}
+burst:
+  phases:
+    - {name: normal, duration: 90, rate: 90}
+    - {name: burst, duration: 10, rate: 500}
+    - {name: normal, duration: 90, rate: 90}
+    - {name: burst, duration: 10, rate: 500}
+    - {name: normal, duration: 100, rate: 90}
+overload:
+  phases:
+    - {name: overload, duration: 300, rate: 400}
+capacity:
+  phases:
+    - {name: normal, duration: 100, rate: 240, workers: 8, service_time: 0.04}
+    - {name: degraded, duration: 100, rate: 240, workers: 3, service_time: 0.04}
+    - {name: recovered, duration: 100, rate: 240, workers: 8, service_time: 0.04}
+fairness:
+  fairness_comparable: true
+  phases:
+    - {name: equal_demand, duration: 300, rate: 450}
+aggressive:
+  phases:
+    - name: aggressive
+      duration: 300
+      rate: 450
+      weights: {alice: 10, bob: 1, carol: 1}
+demo:
+  warmup: 10
+  phases:
+    - {name: normal, duration: 20, rate: 150, workers: 8, service_time: 0.04}
+    - {name: burst, duration: 10, rate: 400}
+    - {name: degraded, duration: 30, rate: 240, workers: 3, service_time: 0.04}
+    - {name: recovered, duration: 40, rate: 240, workers: 8, service_time: 0.04}
+portable-demo:
+  warmup: 10
+  phases:
+    - {name: normal, duration: 20, rate: 30, workers: 4, service_time: 0.1}
+    - {name: burst, duration: 10, rate: 100}
+    - {name: degraded, duration: 30, rate: 80, workers: 1, service_time: 0.1}
+    - {name: recovered, duration: 40, rate: 60, workers: 4, service_time: 0.1}
