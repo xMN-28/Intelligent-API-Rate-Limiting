@@ -795,7 +795,7 @@ wheels = [
 
 [[package]]
 name = "reinforcement-learning-based-api-rate-control"
-version = "0.2.0"
+version = "0.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },

@@ -12,7 +12,7 @@ the commands in `docs/rl.md`. `policy.npz` uses numeric arrays and is loaded wit
 `allow_pickle=False`. PyTorch is needed for training, not for deploying these actors.
 
 Resumable selected-model checkpoints are also downloadable from the
-[v0.2.0 release](https://github.com/xMN-28/Reinforcement-Learning-Based-API-Rate-Control/releases/tag/v0.2.0).
+[v0.2.1 release](https://github.com/xMN-28/Reinforcement-Learning-Based-API-Rate-Control/releases/tag/v0.2.1).
 
 The optional sklearn predictor is a trusted repository-generated joblib artifact;
 load only artifacts you trust. Its sidecar records feature semantics and checksum.

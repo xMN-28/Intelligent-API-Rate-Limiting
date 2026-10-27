@@ -82,7 +82,7 @@ def main() -> None:
             }
         )
     dashboard = {
-        "uid": "reinforcement-learning-based-api-rate-control",
+        "uid": "rl-api-rate-control",
         "title": "Reinforcement Learning-Based API Rate Control",
         "tags": ["admission-control", "experiments"],
         "schemaVersion": 40,
