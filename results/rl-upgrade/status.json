@@ -1,0 +1,8 @@
+{
+  "complete": true,
+  "real_completed": 33,
+  "real_expected": 33,
+  "real_valid": 33,
+  "simulator_episodes": 600,
+  "supplemental_valid": 3
+}

@@ -1,0 +1,73 @@
+{
+  "seeds": [
+    40000,
+    40004
+  ],
+  "duration": 180,
+  "warmup": 30,
+  "seconds": 102.75314139999682,
+  "policies": [
+    "none",
+    "token_bucket",
+    "static_high",
+    "sliding_window",
+    "sliding_high",
+    "adaptive",
+    "rl",
+    "rl_safe",
+    "predictive",
+    "hybrid",
+    "rl_backend",
+    "rl_prediction"
+  ],
+  "family": [
+    "steady",
+    "ramp",
+    "falling",
+    "burst",
+    "overload",
+    "sudden",
+    "gradual",
+    "fairness",
+    "aggressive",
+    "unseen"
+  ],
+  "settings": {
+    "upstream": "http://localhost:8001",
+    "redis_url": "redis://localhost:6379/0",
+    "policy": "adaptive",
+    "rate": 24.0,
+    "burst_seconds": 0.25,
+    "sliding_window": 1.0,
+    "namespace": "demo",
+    "inflight_limit": 64,
+    "upstream_timeout": 2.0,
+    "max_body_bytes": 1048576,
+    "decision_log": "results/runs/live/decisions.jsonl",
+    "backend_workers": 4,
+    "backend_queue": 8,
+    "service_time": 0.1,
+    "service_jitter": 0.1,
+    "controller": {
+      "interval": 1.0,
+      "window": 5.0,
+      "alpha": 0.2,
+      "latency_target": 0.3,
+      "error_threshold": 0.02,
+      "decrease_factor": 0.8,
+      "increase_step": 5.0,
+      "healthy_evaluations": 3,
+      "demand_fraction": 0.8,
+      "min_samples": 30,
+      "min_rate": 10.0,
+      "max_rate": 120.0
+    },
+    "ml": {
+      "model_path": "models/ppo-gateway",
+      "predictor_path": null,
+      "backend_telemetry": false,
+      "max_inference_ms": 50
+    }
+  },
+  "evidence": "simulator, NOT real HTTP"
+}

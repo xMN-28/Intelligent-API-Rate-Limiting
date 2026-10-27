@@ -1,0 +1,22 @@
+# Compact, trained deterministic PPO actor; numpy runtime needs no Torch dependency.
+upstream: http://localhost:8001
+redis_url: redis://localhost:6379/0
+policy: rl_safe
+rate: 20
+inflight_limit: 64
+backend_workers: 4
+backend_queue: 8
+service_time: 0.1
+service_jitter: 0.1
+clients:
+  alice: demo-alice
+  bob: demo-bob
+  carol: demo-carol
+controller:
+  latency_target: 0.3
+  min_rate: 10
+  max_rate: 120
+ml:
+  model_path: assets/models/ppo-gateway
+  backend_telemetry: false
+  max_inference_ms: 50

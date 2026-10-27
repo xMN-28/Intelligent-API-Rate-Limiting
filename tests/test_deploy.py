@@ -9,7 +9,9 @@ def test_dashboard_panels_reference_provisioned_datasource():
     datasource = yaml.safe_load(
         Path("deploy/grafana/provisioning/datasources/prometheus.yaml").read_text()
     )
-    assert len(dashboard["panels"]) == 12
+    assert {"Global admission budget", "Controller inference p95", "Safety interventions"} <= {
+        panel["title"] for panel in dashboard["panels"]
+    }
     assert all(
         panel["datasource"]["uid"] == datasource["datasources"][0]["uid"]
         for panel in dashboard["panels"]

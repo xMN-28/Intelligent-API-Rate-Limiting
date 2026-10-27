@@ -3,9 +3,9 @@ import socket
 
 import pytest
 
-from irl.experiments import run_trial
-from irl.loadgen import Phase, Scenario
-from irl.report import summarize
+from rlrc.experiments import run_trial
+from rlrc.loadgen import Phase, Scenario
+from rlrc.report import summarize
 
 
 def free_port():

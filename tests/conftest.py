@@ -5,7 +5,7 @@ import pytest
 from redis.asyncio import Redis
 from redis.exceptions import RedisError
 
-from irl.config import Settings
+from rlrc.config import Settings
 
 
 @pytest.fixture
@@ -34,7 +34,7 @@ async def redis_client(settings):
             "Redis unavailable; set TEST_REDIS_URL and REQUIRE_REDIS=1 to require integration"
         )
     yield redis
-    keys = [key async for key in redis.scan_iter(match=f"irl:{{{settings.namespace}}}*")]
+    keys = [key async for key in redis.scan_iter(match=f"rlrc:{{{settings.namespace}}}*")]
     if keys:
         await redis.delete(*keys)
     await redis.aclose()

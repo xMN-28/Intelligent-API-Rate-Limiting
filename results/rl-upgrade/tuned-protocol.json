@@ -1,0 +1,106 @@
+{
+  "evidence": "real HTTP/Redis",
+  "smoke": false,
+  "scenario": {
+    "warmup": 30.0,
+    "max_inflight": 512,
+    "max_launch_lag": 0.1,
+    "fairness_comparable": true,
+    "phases": [
+      {
+        "name": "normal",
+        "duration": 20.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 4,
+        "service_time": 0.1,
+        "weights": null
+      },
+      {
+        "name": "degraded",
+        "duration": 20.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 1,
+        "service_time": 0.1,
+        "weights": null
+      },
+      {
+        "name": "recovered",
+        "duration": 60.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 4,
+        "service_time": 0.1,
+        "weights": null
+      }
+    ]
+  },
+  "schedule": [
+    {
+      "repeat": 0,
+      "label": "adaptive_tuned",
+      "seed": 81000
+    },
+    {
+      "repeat": 1,
+      "label": "adaptive_tuned",
+      "seed": 81001
+    },
+    {
+      "repeat": 2,
+      "label": "adaptive_tuned",
+      "seed": 81002
+    }
+  ],
+  "calibration": "results\\ml-runs\\fidelity-v1\\calibration\\calibration.json",
+  "static_rates": [
+    24.0,
+    36.0
+  ],
+  "source_commit": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.9",
+    "cpu_count": 16,
+    "memory_bytes": 33485795328,
+    "commit": "6c591104e68780498f597fae00b56f408a1b8630",
+    "dirty": true
+  },
+  "settings": {
+    "upstream": "http://localhost:8001",
+    "redis_url": "redis://127.0.0.1:16379/0",
+    "policy": "adaptive",
+    "rate": 20.0,
+    "burst_seconds": 0.25,
+    "sliding_window": 1.0,
+    "namespace": "demo",
+    "inflight_limit": 64,
+    "upstream_timeout": 2.0,
+    "max_body_bytes": 1048576,
+    "decision_log": "results/runs/live/decisions.jsonl",
+    "backend_workers": 4,
+    "backend_queue": 8,
+    "service_time": 0.1,
+    "service_jitter": 0.1,
+    "controller": {
+      "interval": 1.0,
+      "window": 5.0,
+      "alpha": 0.2,
+      "latency_target": 0.3,
+      "error_threshold": 0.02,
+      "decrease_factor": 0.8,
+      "increase_step": 5.0,
+      "healthy_evaluations": 3,
+      "demand_fraction": 0.8,
+      "min_samples": 30,
+      "min_rate": 10.0,
+      "max_rate": 120.0
+    },
+    "ml": {
+      "model_path": "models/ppo-gateway",
+      "predictor_path": null,
+      "backend_telemetry": false,
+      "max_inference_ms": 50
+    }
+  }
+}

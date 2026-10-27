@@ -1,0 +1,47 @@
+# Longer optional HTTP workloads; not claimed as executed by the focused study.
+steady:
+  phases:
+    - {name: steady, duration: 180, rate: 30}
+ramp:
+  phases:
+    - {name: increasing, duration: 90, rate: 15, end_rate: 100}
+    - {name: decreasing, duration: 90, rate: 100, end_rate: 15}
+burst:
+  phases:
+    - {name: normal, duration: 50, rate: 30}
+    - {name: burst, duration: 10, rate: 100}
+    - {name: normal, duration: 50, rate: 30}
+    - {name: burst, duration: 10, rate: 100}
+    - {name: normal, duration: 60, rate: 30}
+overload:
+  phases:
+    - {name: overload, duration: 180, rate: 100}
+sudden:
+  phases:
+    - {name: normal, duration: 60, rate: 60, workers: 4, service_time: 0.1}
+    - {name: degraded, duration: 60, rate: 60, workers: 1, service_time: 0.1}
+    - {name: recovered, duration: 60, rate: 60, workers: 4, service_time: 0.1}
+gradual:
+  phases:
+    - {name: normal, duration: 40, rate: 60, workers: 4, service_time: 0.1}
+    - {name: decline1, duration: 20, rate: 60, workers: 3, service_time: 0.1}
+    - {name: decline2, duration: 20, rate: 60, workers: 2, service_time: 0.1}
+    - {name: decline3, duration: 20, rate: 60, workers: 1, service_time: 0.1}
+    - {name: recovered, duration: 80, rate: 60, workers: 4, service_time: 0.1}
+recovery:
+  phases:
+    - {name: degraded, duration: 60, rate: 60, workers: 1, service_time: 0.1}
+    - {name: restored, duration: 120, rate: 60, workers: 4, service_time: 0.1}
+fairness:
+  fairness_comparable: true
+  phases:
+    - {name: equal_demand, duration: 180, rate: 90}
+aggressive:
+  phases:
+    - {name: aggressive, duration: 180, rate: 90, weights: {alice: 10, bob: 1, carol: 1}}
+unseen:
+  phases:
+    - {name: ramp, duration: 40, rate: 20, end_rate: 80}
+    - {name: burst, duration: 10, rate: 110}
+    - {name: degraded, duration: 50, rate: 70, workers: 2, service_time: 0.15}
+    - {name: recovery, duration: 80, rate: 80, end_rate: 25, workers: 4, service_time: 0.1}

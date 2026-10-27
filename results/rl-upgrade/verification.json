@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-27T06:38:51.213573+00:00",
+  "source_digest": "d66b4161c52659f6e0d770706abf2c1c1c18ca88f3fd6c312ae7918412b94435",
+  "pytest": {
+    "passed": 71,
+    "warnings": 14,
+    "seconds": 22.52,
+    "redis_required": true,
+    "command": "uv run --extra ml --extra dev pytest -q"
+  },
+  "ruff_lint": "passed",
+  "ruff_format": "39 Python files passed",
+  "mypy_linux": "26 source files passed; separate platform cache",
+  "mypy_windows": "26 source files passed; separate platform cache",
+  "uv_lock_check": "passed",
+  "wheel_and_sdist": "built",
+  "compose_config": "passed",
+  "docker_engine_run": "not executed; engine unavailable",
+  "remote_ci": "not executed for these uncommitted changes",
+  "actual_model_export_parity": "1000/1000 observations per selected actor",
+  "simulator_regression": "30 selected episodes exactly matched six frozen outcome/admission metrics",
+  "known_warning": "Matplotlib/Pyparsing deprecations"
+}

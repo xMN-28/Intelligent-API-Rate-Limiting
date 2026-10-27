@@ -4,7 +4,7 @@ import httpx
 import pytest
 from fastapi import HTTPException
 
-from irl.backend import WorkerPool, create_app
+from rlrc.backend import WorkerPool, create_app
 
 
 async def test_bounded_queue_rejects_excess_and_cleans_cancelled_waiter():
@@ -56,5 +56,5 @@ async def test_internal_controls_require_token_and_metrics_are_real(settings):
         assert response.status_code == 200
         assert (await http.get("/work")).json()["ok"]
         metrics = (await http.get("/metrics")).text
-        assert "irl_backend_completed_total 1.0" in metrics
-        assert "irl_backend_workers 2.0" in metrics
+        assert "rlrc_backend_completed_total 1.0" in metrics
+        assert "rlrc_backend_workers 2.0" in metrics

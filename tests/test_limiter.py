@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from irl.limiter import RedisLimiter
+from rlrc.limiter import RedisLimiter
 
 pytestmark = pytest.mark.redis
 

@@ -1,5 +1,10 @@
 # Verified implementation results
 
+The sections below preserve the original October 24 baseline experiments. The
+October 27 PPO/predictive upgrade has a separate [measured report](rl-upgrade/REPORT.md),
+including its completion status, trained model provenance, repeated HTTP comparisons,
+simulator fidelity, and negative results. Original results have not been replaced.
+
 Verification performed on October 24, 2026, using Python 3.12.9 on Windows 11 and a real Redis 7.4.11 server. The local Redis executable came from the [redis-windows portable build](https://github.com/redis-windows/redis-windows/releases/tag/7.4.11); the delivered Docker deployment uses the official Linux Redis image.
 
 ## Checks
@@ -45,13 +50,13 @@ Observed goodput was 18.79 RPS, with 106 backend errors and 4,202 gateway reject
 Start a Redis server, then run from the repository root. These PowerShell commands reproduce the experiment definitions; timings and selected calibration rates can vary by machine:
 
 ```powershell
-$env:IRL_CONFIG = 'configs/portable.yaml'
+$env:RLRC_CONFIG = 'configs/portable.yaml'
 # Set this only when Redis is not at the default localhost:6379:
-# $env:IRL_REDIS_URL = 'redis://127.0.0.1:16379/0'
-uv run irl calibrate --rates 10 20 30 40 60 --duration 4 --warmup 1 --output results/runs/portable-calibration
-uv run irl suite --scenarios portable-demo --repetitions 1 --calibration results/runs/portable-calibration/calibration.json --scale 0.3 --output results/runs/portable-verified
-uv run irl demo --scenario portable-demo --output results/runs/recovery-verified
-Remove-Item Env:IRL_CONFIG
+# $env:RLRC_REDIS_URL = 'redis://127.0.0.1:16379/0'
+uv run rlrc calibrate --rates 10 20 30 40 60 --duration 4 --warmup 1 --output results/runs/portable-calibration
+uv run rlrc suite --scenarios portable-demo --repetitions 1 --calibration results/runs/portable-calibration/calibration.json --scale 0.3 --output results/runs/portable-verified
+uv run rlrc demo --scenario portable-demo --output results/runs/recovery-verified
+Remove-Item Env:RLRC_CONFIG
 ```
 
 Use new output directories when rerunning. To obtain stronger results, use the default 5/15-second calibration and the documented 30/300-second, five-repetition evaluation protocol. Keep controller settings fixed across evaluation workloads.

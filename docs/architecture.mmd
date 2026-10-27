@@ -3,7 +3,7 @@ flowchart LR
     G <-->|Atomic global and client admission| R[(Redis)]
     G -->|Bounded forwarding| B[Bounded backend API]
     B -->|Responses| G
-    G -->|Upstream observations| C[EWMA and AIMD controller inside gateway]
+    G -->|Upstream observations| C[PPO and safety or EWMA/AIMD controller]
     C -->|Publish rate budget| R
     G -->|Metrics| P[Prometheus]
     B -->|Metrics| P

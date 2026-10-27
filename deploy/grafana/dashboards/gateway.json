@@ -1,6 +1,6 @@
 {
-  "uid": "intelligent-rate-limiting",
-  "title": "Intelligent API Rate Limiting",
+  "uid": "reinforcement-learning-based-api-rate-control",
+  "title": "Reinforcement Learning-Based API Rate Control",
   "tags": [
     "admission-control",
     "experiments"
@@ -31,7 +31,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "irl_rate_budget",
+          "expr": "rlrc_rate_budget",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -69,7 +69,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum by (client) (rate(irl_gateway_admitted_total[10s]))",
+          "expr": "sum by (client) (rate(rlrc_gateway_admitted_total[10s]))",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -107,7 +107,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum by (outcome) (rate(irl_gateway_requests_total[10s]))",
+          "expr": "sum by (outcome) (rate(rlrc_gateway_requests_total[10s]))",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -145,17 +145,17 @@
       "targets": [
         {
           "refId": "P50",
-          "expr": "histogram_quantile(0.5, sum by (le) (rate(irl_upstream_duration_seconds_bucket[10s])))",
+          "expr": "histogram_quantile(0.5, sum by (le) (rate(rlrc_upstream_duration_seconds_bucket[10s])))",
           "legendFormat": "p50"
         },
         {
           "refId": "P95",
-          "expr": "histogram_quantile(0.95, sum by (le) (rate(irl_upstream_duration_seconds_bucket[10s])))",
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(rlrc_upstream_duration_seconds_bucket[10s])))",
           "legendFormat": "p95"
         },
         {
           "refId": "P99",
-          "expr": "histogram_quantile(0.99, sum by (le) (rate(irl_upstream_duration_seconds_bucket[10s])))",
+          "expr": "histogram_quantile(0.99, sum by (le) (rate(rlrc_upstream_duration_seconds_bucket[10s])))",
           "legendFormat": "p99"
         }
       ],
@@ -193,7 +193,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "histogram_quantile(0.95, sum by (le) (rate(irl_admission_duration_seconds_bucket[10s])))",
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(rlrc_admission_duration_seconds_bucket[10s])))",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -231,7 +231,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "irl_gateway_inflight",
+          "expr": "rlrc_gateway_inflight",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -269,7 +269,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "irl_backend_active / irl_backend_workers",
+          "expr": "rlrc_backend_active / rlrc_backend_workers",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -307,7 +307,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "irl_backend_waiting",
+          "expr": "rlrc_backend_waiting",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -345,7 +345,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "irl_backend_workers",
+          "expr": "rlrc_backend_workers",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -383,7 +383,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum by (reason) (increase(irl_controller_decisions_total[30s]))",
+          "expr": "sum by (reason) (increase(rlrc_controller_decisions_total[30s]))",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -421,7 +421,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "irl_backend_cpu_percent",
+          "expr": "rlrc_backend_cpu_percent",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -459,7 +459,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "rate(irl_backend_completed_total[10s])",
+          "expr": "rate(rlrc_backend_completed_total[10s])",
           "legendFormat": "{{client}}{{outcome}}{{reason}}"
         }
       ],
@@ -479,8 +479,236 @@
           "mode": "multi"
         }
       }
+    },
+    {
+      "id": 13,
+      "title": "Offered gateway traffic",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(rlrc_gateway_offered_total[10s]))",
+          "legendFormat": "{{client}}{{outcome}}{{reason}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "title": "Proposed learned budget",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 48,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rlrc_proposed_budget",
+          "legendFormat": "{{client}}{{outcome}}{{reason}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "title": "Controller inference p95",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(rlrc_controller_inference_seconds_bucket[10s])))",
+          "legendFormat": "{{client}}{{outcome}}{{reason}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "title": "Safety interventions",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 56,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (reason) (increase(rlrc_safety_interventions_total{reason!~\"model|fallback\"}[30s]))",
+          "legendFormat": "{{client}}{{outcome}}{{reason}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "title": "Explicit model fallbacks",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 64,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "increase(rlrc_model_fallbacks_total[30s])",
+          "legendFormat": "{{client}}{{outcome}}{{reason}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "title": "Model loaded successfully",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 64,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rlrc_model_ready",
+          "legendFormat": "{{client}}{{outcome}}{{reason}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
     }
   ],
   "editable": false,
-  "description": "Live gateway and backend observations. Saved experiment comparisons are generated by irl report."
+  "description": "Live gateway and backend observations. Saved experiment comparisons are generated by rlrc report."
 }

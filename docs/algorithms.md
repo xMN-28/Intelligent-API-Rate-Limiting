@@ -1,5 +1,9 @@
 # Algorithms and failure behavior
 
+This document describes the preserved conventional enforcement and AIMD baseline.
+The additional trained PPO controllers, normalized observations, reward, and safety
+layer are documented in [the ML implementation guide](rl.md).
+
 ## Token Bucket
 
 The global refill rate is `R`; each of `N` registered clients gets `R/N`. Capacity is `max(1, rate × burst_seconds)`. At each operation, refill according to elapsed Redis server time, cap the balance, and require one token from both buckets. The atomic script computes both decisions before deducting either token. Denied operations may leave stored timestamps unchanged; the next check recomputes refill from the same original state.

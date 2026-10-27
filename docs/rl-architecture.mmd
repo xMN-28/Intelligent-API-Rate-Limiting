@@ -1,0 +1,24 @@
+flowchart TB
+    subgraph Offline[Offline training and validation]
+        Trace[Seeded randomized request traces] --> Env[Gymnasium event simulator]
+        Env --> PPO[PPO actor and value training]
+        PPO --> V[Separate validation scenarios]
+        V --> Best[Best checkpoint]
+        Best --> Export[Numeric actor export and checked metadata]
+    end
+    subgraph Live[Live gateway - one process]
+        Clients[Registered API clients] --> Admission[Atomic Redis admission]
+        Admission --> Backend[Bounded HTTP backend]
+        Backend --> Telemetry[Completed-request telemetry]
+        Clients --> Demand[Offered-demand counters]
+        Demand --> Features[Shared normalized features]
+        Telemetry --> Features
+        Features --> Actor[Deterministic actor once per interval]
+        Export --> Actor
+        Actor --> Guards[Bounds and optional health safety]
+        AIMD[Preserved EWMA / AIMD fallback] --> Guards
+        Guards --> Publication[Atomic old-rate settlement and publication]
+        Publication --> Admission
+        Guards --> Logs[Decision logs and Prometheus]
+    end
+    Logs --> Reports[Independent HTTP and simulator reports]

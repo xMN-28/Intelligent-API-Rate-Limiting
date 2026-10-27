@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "feature_version": 1,
+  "features": [
+    "budget",
+    "offered",
+    "admitted",
+    "completed",
+    "goodput",
+    "latency_ewma",
+    "p90",
+    "errors",
+    "timeouts",
+    "rejected",
+    "inflight",
+    "previous_change",
+    "demand_trend",
+    "latency_trend",
+    "sample_volume",
+    "has_samples",
+    "overload_risk"
+  ],
+  "simulator": {
+    "duration": 160,
+    "clients": 3,
+    "max_rate": 120,
+    "min_rate": 10,
+    "initial_rate": 20,
+    "target": 0.3,
+    "timeout": 2,
+    "inflight_limit": 64,
+    "queue": 8,
+    "burst": 0.25,
+    "overhead": 0.005,
+    "family": "random",
+    "arrival": "regular",
+    "workers": 4,
+    "service_time": 0.1,
+    "jitter": 0.1,
+    "distribution": "uniform",
+    "record_responses": false,
+    "fixed_offered": null,
+    "changes": []
+  },
+  "architecture": {
+    "policy": [
+      64,
+      64
+    ],
+    "value": [
+      64,
+      64
+    ],
+    "activation": "Tanh"
+  },
+  "torch": "2.8.0+cu128",
+  "seed": 42,
+  "steps_completed": 131072,
+  "model_sha256": "721c1316b3315e0d1541a80850be7bab565d2612ca34456c0fde4070879a397a",
+  "export_sha256": "d45cd7f14abddb90224b939d808266485e6a692f7d1685cfdf635946705a0e9a",
+  "source_digest": "255e46c0e4d2a7209212ba3460880109e9125fe0138c7011f2038b38339d3975",
+  "final_validation": {
+    "goodput": 47.070238095238096,
+    "failures": 0.014778194094623373,
+    "score": 46.46412282095853
+  },
+  "provenance": "Exported trained PPO deterministic categorical actor; full training manifests and checkpoints are retained locally under models/.",
+  "selected_steps": 32768
+}

@@ -14,7 +14,14 @@ def main() -> None:
     fig.patch.set_facecolor("#f7f9fc")
     ax.set(xlim=(0, 15), ylim=(0, 8.5))
     ax.axis("off")
-    ax.text(0.4, 8, "INTELLIGENT API RATE LIMITING", fontsize=21, weight="bold", color="#142b46")
+    ax.text(
+        0.4,
+        8,
+        "REINFORCEMENT LEARNING-BASED API RATE CONTROL",
+        fontsize=21,
+        weight="bold",
+        color="#142b46",
+    )
     ax.text(
         0.4,
         7.55,
@@ -26,7 +33,7 @@ def main() -> None:
         "load": (1.8, 5.8, "Traffic generator", "Seeded open arrivals"),
         "gateway": (6.2, 5.8, "FastAPI gateway", "Identity · admission · proxy"),
         "backend": (12.1, 5.8, "Backend API", "Bounded workers + queue"),
-        "controller": (6.2, 3.5, "Adaptive controller", "EWMA + AIMD · every second"),
+        "controller": (6.2, 3.5, "Budget controller", "PPO + safety · AIMD baseline"),
         "redis": (10.1, 3.5, "Redis", "Atomic budgets + client state"),
         "raw": (1.8, 3.5, "Run artifacts", "CSV · manifests · decisions"),
         "report": (1.8, 1.2, "Comparison report", "Goodput · tails · fairness"),
@@ -94,6 +101,8 @@ def main() -> None:
     output.mkdir(exist_ok=True)
     fig.savefig(output / "architecture.png", dpi=160, facecolor=fig.get_facecolor())
     fig.savefig(output / "architecture.svg", facecolor=fig.get_facecolor())
+    svg = output / "architecture.svg"
+    svg.write_text("\n".join(line.rstrip() for line in svg.read_text().splitlines()) + "\n")
     plt.close(fig)
 
 

@@ -3,8 +3,8 @@ import asyncio
 import httpx
 import pytest
 
-from irl.backend import create_app as backend_app
-from irl.gateway import create_app
+from rlrc.backend import create_app as backend_app
+from rlrc.gateway import create_app
 
 
 @pytest.mark.redis
@@ -132,7 +132,7 @@ async def test_failed_controller_publication_is_logged_and_rolls_back(redis_clie
 
     from redis.exceptions import ConnectionError
 
-    from irl.controller import Observation
+    from rlrc.controller import Observation
 
     settings.policy = "adaptive"
     settings.controller.interval = 0.01

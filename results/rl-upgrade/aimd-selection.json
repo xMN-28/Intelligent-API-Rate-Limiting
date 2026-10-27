@@ -1,0 +1,200 @@
+{
+  "selected": {
+    "parameters": {
+      "window": 2,
+      "alpha": 0.5,
+      "healthy_evaluations": 1,
+      "increase_step": 5,
+      "min_samples": 10
+    },
+    "validation_score": 42.220093181688675,
+    "validation_goodput": 42.88214285714286
+  },
+  "candidates": [
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.2,
+        "healthy_evaluations": 1,
+        "increase_step": 2,
+        "min_samples": 10
+      },
+      "validation_score": 38.495449220809526,
+      "validation_goodput": 38.903571428571425
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.2,
+        "healthy_evaluations": 1,
+        "increase_step": 5,
+        "min_samples": 10
+      },
+      "validation_score": 39.813343116351504,
+      "validation_goodput": 40.358333333333334
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.2,
+        "healthy_evaluations": 3,
+        "increase_step": 2,
+        "min_samples": 10
+      },
+      "validation_score": 35.987898757773735,
+      "validation_goodput": 36.259523809523806
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.2,
+        "healthy_evaluations": 3,
+        "increase_step": 5,
+        "min_samples": 10
+      },
+      "validation_score": 37.5992436979119,
+      "validation_goodput": 38.02738095238096
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.5,
+        "healthy_evaluations": 1,
+        "increase_step": 2,
+        "min_samples": 10
+      },
+      "validation_score": 39.23077963533006,
+      "validation_goodput": 39.672619047619044
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.5,
+        "healthy_evaluations": 1,
+        "increase_step": 5,
+        "min_samples": 10
+      },
+      "validation_score": 42.220093181688675,
+      "validation_goodput": 42.88214285714286
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.5,
+        "healthy_evaluations": 3,
+        "increase_step": 2,
+        "min_samples": 10
+      },
+      "validation_score": 35.43474057344026,
+      "validation_goodput": 35.694047619047616
+    },
+    {
+      "parameters": {
+        "window": 2,
+        "alpha": 0.5,
+        "healthy_evaluations": 3,
+        "increase_step": 5,
+        "min_samples": 10
+      },
+      "validation_score": 38.97086122275727,
+      "validation_goodput": 39.41428571428571
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.2,
+        "healthy_evaluations": 1,
+        "increase_step": 2,
+        "min_samples": 30
+      },
+      "validation_score": 33.53832921143704,
+      "validation_goodput": 33.90952380952381
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.2,
+        "healthy_evaluations": 1,
+        "increase_step": 5,
+        "min_samples": 30
+      },
+      "validation_score": 36.61517831107033,
+      "validation_goodput": 37.083333333333336
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.2,
+        "healthy_evaluations": 3,
+        "increase_step": 2,
+        "min_samples": 30
+      },
+      "validation_score": 32.29786948750568,
+      "validation_goodput": 32.535714285714285
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.2,
+        "healthy_evaluations": 3,
+        "increase_step": 5,
+        "min_samples": 30
+      },
+      "validation_score": 32.324369187994016,
+      "validation_goodput": 32.70714285714286
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.5,
+        "healthy_evaluations": 1,
+        "increase_step": 2,
+        "min_samples": 30
+      },
+      "validation_score": 35.430442241284666,
+      "validation_goodput": 35.81190476190476
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.5,
+        "healthy_evaluations": 1,
+        "increase_step": 5,
+        "min_samples": 30
+      },
+      "validation_score": 39.48050421228894,
+      "validation_goodput": 39.955952380952375
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.5,
+        "healthy_evaluations": 3,
+        "increase_step": 2,
+        "min_samples": 30
+      },
+      "validation_score": 34.085371100298985,
+      "validation_goodput": 34.32142857142858
+    },
+    {
+      "parameters": {
+        "window": 5,
+        "alpha": 0.5,
+        "healthy_evaluations": 3,
+        "increase_step": 5,
+        "min_samples": 30
+      },
+      "validation_score": 36.44599368754057,
+      "validation_goodput": 36.785714285714285
+    }
+  ],
+  "seeds": [
+    20001,
+    20002,
+    20003,
+    20004,
+    20005,
+    20006
+  ],
+  "criterion": "Same independent validation score used for PPO checkpoint selection"
+}

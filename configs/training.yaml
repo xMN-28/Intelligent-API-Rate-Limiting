@@ -1,0 +1,17 @@
+# One transition is one second of simulated time. No sleeping or real HTTP.
+duration: 160
+clients: 3
+max_rate: 120
+min_rate: 10
+initial_rate: 20
+target: 0.3
+timeout: 2
+inflight_limit: 64
+queue: 8
+burst: 0.25
+overhead: 0.005
+family: random
+arrival: regular
+workers: 4
+service_time: 0.1
+jitter: 0.1

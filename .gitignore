@@ -11,3 +11,7 @@ results/runs/*
 !results/runs/.gitkeep
 .runtime/
 /guide.md
+/models/*
+!/models/.gitkeep
+/results/ml-runs/*
+!/results/ml-runs/.gitkeep

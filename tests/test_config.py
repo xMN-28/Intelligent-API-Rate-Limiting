@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from irl.config import ControllerConfig, Settings, load_settings
+from rlrc.config import ControllerConfig, Settings, load_settings
 
 
 def test_controller_floor_cannot_make_sample_threshold_unreachable():
@@ -19,6 +19,6 @@ def test_bad_configuration_is_rejected():
 
 
 def test_explicit_missing_config_does_not_silently_use_defaults(monkeypatch):
-    monkeypatch.setenv("IRL_CONFIG", "does-not-exist.yaml")
+    monkeypatch.setenv("RLRC_CONFIG", "does-not-exist.yaml")
     with pytest.raises(FileNotFoundError):
         load_settings()

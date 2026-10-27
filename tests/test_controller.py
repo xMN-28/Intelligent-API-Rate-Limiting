@@ -1,7 +1,7 @@
 import pytest
 
-from irl.config import ControllerConfig
-from irl.controller import FeedbackController, Observation
+from rlrc.config import ControllerConfig
+from rlrc.controller import FeedbackController, Observation
 
 
 def feed(controller, at, latency=0.02, count=40, failed=False, demand=100):

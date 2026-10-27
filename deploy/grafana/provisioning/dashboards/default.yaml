@@ -1,6 +1,6 @@
 apiVersion: 1
 providers:
-  - name: Intelligent Rate Limiting
+  - name: Reinforcement Learning-Based API Rate Control
     type: file
     disableDeletion: true
     editable: false

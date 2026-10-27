@@ -1,0 +1,56 @@
+{
+  "main_trials": 33,
+  "supplemental_trials": 3,
+  "main_offered": 198000,
+  "main_launched": 198000,
+  "supplemental_offered": 18000,
+  "supplemental_launched": 17972,
+  "missed_launches": 28,
+  "model_fallbacks": 0,
+  "admission_unknown": 1,
+  "main_protocol": {
+    "warmup": 30.0,
+    "max_inflight": 512,
+    "max_launch_lag": 0.1,
+    "fairness_comparable": true,
+    "phases": [
+      {
+        "name": "normal",
+        "duration": 20.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 4,
+        "service_time": 0.1,
+        "weights": null
+      },
+      {
+        "name": "degraded",
+        "duration": 20.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 1,
+        "service_time": 0.1,
+        "weights": null
+      },
+      {
+        "name": "recovered",
+        "duration": 60.0,
+        "rate": 60.0,
+        "end_rate": null,
+        "workers": 4,
+        "service_time": 0.1,
+        "weights": null
+      }
+    ]
+  },
+  "static_rates": [
+    24.0,
+    36.0
+  ],
+  "seed_repetitions": [
+    81000,
+    81001,
+    81002
+  ],
+  "model_selection": "Frozen before final comparisons; supplemental AIMD selected on validation only"
+}

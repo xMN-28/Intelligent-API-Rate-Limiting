@@ -1,0 +1,29 @@
+[
+  {
+    "model": "ppo-gateway",
+    "deployment": "ppo-gateway",
+    "observations": 1000,
+    "action_agreement": 1.0,
+    "seed": 99100,
+    "checkpoint_sha256": "086d5c512e04acb97d2bd7c9b488a3d909c3323806835542a4f11a4fde3a85ff",
+    "export_sha256": "c57098be634732359cb6e5ec84799daa6861469f21c80f9968d2a2f09a249b21"
+  },
+  {
+    "model": "ppo-backend-v2",
+    "deployment": "ppo-backend",
+    "observations": 1000,
+    "action_agreement": 1.0,
+    "seed": 99100,
+    "checkpoint_sha256": "09cda3fd04ad09bb3f8d47962962e4a4d345e8e38d8a87d8c81138ea0c54e853",
+    "export_sha256": "2817c7cbcdf9ade1e983695f85873eb109ce19ca29c8949b3b8bf3abd9076402"
+  },
+  {
+    "model": "ppo-prediction-v2",
+    "deployment": "ppo-prediction",
+    "observations": 1000,
+    "action_agreement": 1.0,
+    "seed": 99100,
+    "checkpoint_sha256": "721c1316b3315e0d1541a80850be7bab565d2612ca34456c0fde4070879a397a",
+    "export_sha256": "d45cd7f14abddb90224b939d808266485e6a692f7d1685cfdf635946705a0e9a"
+  }
+]

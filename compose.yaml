@@ -12,9 +12,10 @@ services:
     build:
       context: .
       dockerfile: deploy/Dockerfile
-    command: [irl, serve, backend, --host, "0.0.0.0"]
+    command: [rlrc, serve, backend, --host, "0.0.0.0"]
     environment:
-      IRL_ADMIN_TOKEN: ${IRL_ADMIN_TOKEN:-local-demo-admin}
+      RLRC_ADMIN_TOKEN: ${RLRC_ADMIN_TOKEN:-local-demo-admin}
+      RLRC_CONFIG: ${RLRC_CONFIG:-configs/default.yaml}
     ports: ["127.0.0.1:8001:8001"]
     healthcheck:
       test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8001/healthz')"]
@@ -26,12 +27,13 @@ services:
       context: .
       dockerfile: deploy/Dockerfile
     environment:
-      IRL_REDIS_URL: redis://redis:6379/0
-      IRL_UPSTREAM: http://backend:8001
-      IRL_POLICY: ${IRL_POLICY:-adaptive}
-      IRL_RATE: ${IRL_RATE:-100}
-      IRL_NAMESPACE: ${IRL_NAMESPACE:-demo}
-      IRL_ADMIN_TOKEN: ${IRL_ADMIN_TOKEN:-local-demo-admin}
+      RLRC_REDIS_URL: redis://redis:6379/0
+      RLRC_CONFIG: ${RLRC_CONFIG:-configs/default.yaml}
+      RLRC_UPSTREAM: http://backend:8001
+      RLRC_POLICY: ${RLRC_POLICY:-adaptive}
+      RLRC_RATE: ${RLRC_RATE:-100}
+      RLRC_NAMESPACE: ${RLRC_NAMESPACE:-demo}
+      RLRC_ADMIN_TOKEN: ${RLRC_ADMIN_TOKEN:-local-demo-admin}
     volumes: [./results/runs:/app/results/runs]
     ports: ["127.0.0.1:8000:8000"]
     depends_on:
@@ -64,10 +66,10 @@ services:
       context: .
       dockerfile: deploy/Dockerfile
     environment:
-      IRL_REDIS_URL: redis://redis:6379/1
-      IRL_ADMIN_TOKEN: ${IRL_ADMIN_TOKEN:-local-demo-admin}
+      RLRC_REDIS_URL: redis://redis:6379/1
+      RLRC_ADMIN_TOKEN: ${RLRC_ADMIN_TOKEN:-local-demo-admin}
     volumes: [./results/runs:/app/results/runs]
-    entrypoint: [irl]
+    entrypoint: [rlrc]
     command: [suite, --scenarios, demo, --repetitions, "1", --rates, "90", "150"]
     depends_on:
       redis: {condition: service_healthy}

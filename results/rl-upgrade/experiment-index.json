@@ -1,0 +1,15 @@
+{
+  "hardware.json": "Completed six CPU/CUDA throughput probes; single probe per configuration",
+  "fidelity-v1": "Completed real calibration sweep and unthrottled dynamic fidelity run",
+  "smoke-all": "Completed eleven short integration trials; not performance evidence",
+  "heldout-simulator": "Failed on NumPy scalar JSON serialization; retained, superseded",
+  "heldout-simulator-v2": "Completed 550 episodes with unaligned 20/30 static rates; superseded",
+  "heldout-simulator-final": "Completed 600 episodes with independently calibrated 24/36 static rates",
+  "subset-regression": "Thirty exact replay comparisons after benchmark usability improvements",
+  "edge-audit.json": "Twelve post-training diagnostic episodes; not model-selection data",
+  "real-capacity-v1": "Completed 33 real HTTP/Redis trials; three matched seeds per policy",
+  "tuned-aimd-heldout": "Completed fifty episodes of validation-selected conventional tuning",
+  "tuned-aimd-real": "Separate later supplemental study; see status.json for completed count",
+  "training_exploration": "Earlier backend seed43 and prediction seed44 retained; selected paired variants retrained with seed42 and independent telemetry-dropout RNG",
+  "roots": "Raw artifacts in ignored results/ml-runs/; training checkpoints in ignored models/"
+}

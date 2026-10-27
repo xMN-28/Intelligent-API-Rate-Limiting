@@ -1,0 +1,88 @@
+{
+  "torch": "2.8.0+cu128",
+  "cuda_runtime": "12.8",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+  "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "logical_cpus": 16,
+  "ram_gb": 31.186077117919922,
+  "results": [
+    {
+      "device": "cpu",
+      "mode": "dummy",
+      "n_envs": 1,
+      "steps": 2048,
+      "seconds": 1.9760433999981615,
+      "steps_s": 1036.414483609978,
+      "startup_seconds": 0.000276099999609869,
+      "rss_mb": 590.37109375,
+      "cuda_allocated_mb": 0
+    },
+    {
+      "device": "cpu",
+      "mode": "dummy",
+      "n_envs": 4,
+      "steps": 2048,
+      "seconds": 1.450620899995556,
+      "steps_s": 1411.8092466517433,
+      "startup_seconds": 0.00027439999394118786,
+      "rss_mb": 590.98046875,
+      "cuda_allocated_mb": 0
+    },
+    {
+      "device": "cpu",
+      "mode": "subproc",
+      "n_envs": 4,
+      "steps": 2048,
+      "seconds": 0.806587999999465,
+      "steps_s": 2539.0905890012727,
+      "startup_seconds": 2.502529500001401,
+      "rss_mb": 591.359375,
+      "cuda_allocated_mb": 0
+    },
+    {
+      "device": "cuda",
+      "mode": "dummy",
+      "n_envs": 1,
+      "steps": 2048,
+      "seconds": 3.7904666000031284,
+      "steps_s": 540.3028745849679,
+      "startup_seconds": 0.00023860000510467216,
+      "rss_mb": 1502.60546875,
+      "cuda_allocated_mb": 17.5791015625
+    },
+    {
+      "device": "cuda",
+      "mode": "dummy",
+      "n_envs": 4,
+      "steps": 2048,
+      "seconds": 1.8348275999960606,
+      "steps_s": 1116.1811605648384,
+      "startup_seconds": 0.0002547999974922277,
+      "rss_mb": 1509.1484375,
+      "cuda_allocated_mb": 17.91259765625
+    },
+    {
+      "device": "cuda",
+      "mode": "subproc",
+      "n_envs": 4,
+      "steps": 2048,
+      "seconds": 1.4121177999986685,
+      "steps_s": 1450.303933568383,
+      "startup_seconds": 2.481402800003707,
+      "rss_mb": 1509.18359375,
+      "cuda_allocated_mb": 17.91845703125
+    }
+  ],
+  "recommended": {
+    "device": "cpu",
+    "mode": "subproc",
+    "n_envs": 4,
+    "steps": 2048,
+    "seconds": 0.806587999999465,
+    "steps_s": 2539.0905890012727,
+    "startup_seconds": 2.502529500001401,
+    "rss_mb": 591.359375,
+    "cuda_allocated_mb": 0
+  }
+}

@@ -4,8 +4,8 @@ import json
 import httpx
 import pytest
 
-from irl.loadgen import Phase, Scenario, load_scenario, run_workload
-from irl.report import build_report, summarize
+from rlrc.loadgen import Phase, Scenario, load_scenario, run_workload
+from rlrc.report import build_report, summarize
 
 
 async def test_open_arrivals_count_missed_launches_and_reports(tmp_path, settings, monkeypatch):
@@ -20,7 +20,7 @@ async def test_open_arrivals_count_missed_launches_and_reports(tmp_path, setting
     def client(**kwargs):
         return original_client(transport=httpx.MockTransport(slow), **kwargs)
 
-    monkeypatch.setattr("irl.loadgen.httpx.AsyncClient", client)
+    monkeypatch.setattr("rlrc.loadgen.httpx.AsyncClient", client)
     scenario = Scenario(
         warmup=0,
         max_inflight=1,
@@ -54,7 +54,7 @@ async def test_warmup_excluded_and_same_seed_reproduces_clients(tmp_path, settin
             **kwargs,
         )
 
-    monkeypatch.setattr("irl.loadgen.httpx.AsyncClient", client)
+    monkeypatch.setattr("rlrc.loadgen.httpx.AsyncClient", client)
     scenario = Scenario(warmup=0.1, phases=[Phase(name="test", duration=0.1, rate=50)])
     sequences = []
     for index in range(2):
