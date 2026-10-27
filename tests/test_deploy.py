@@ -10,7 +10,7 @@ def test_dashboard_panels_reference_provisioned_datasource():
         Path("deploy/grafana/provisioning/datasources/prometheus.yaml").read_text()
     )
     assert 8 <= len(dashboard["uid"]) <= 40
-    assert f"/d/{dashboard['uid']}" in Path("README.md").read_text()
+    assert f"/d/{dashboard['uid']}" in Path("README.md").read_text(encoding="utf-8")
     assert {"Global admission budget", "Controller inference p95", "Safety interventions"} <= {
         panel["title"] for panel in dashboard["panels"]
     }

@@ -19,39 +19,39 @@ See [ML implementation, training, and deployment](docs/rl.md) and [measured comp
 The current Python module and CLI are `rlrc`, configuration variables use `RLRC_`, and the distribution is `reinforcement-learning-based-api-rate-control`. The legacy branch retains its original interfaces.
 
 For an existing Windows checkout whose old folder is locked by an editor, close
-Codex and terminals, then run `scripts/rename-workspace.ps1` from a PowerShell
-session in the parent directory. It renames the old workspace folder and recreates
+Codex and terminals, then run `& ".\Intelligent API Rate Limiting\scripts\rename-workspace.ps1"`
+from a PowerShell session in the parent directory. It renames the old workspace folder and recreates
 virtual-environment entry points. Fresh clones already use the new repository name.
 
 ## Results: all controller comparisons
 
-The main **real HTTP/Redis** study completed 33 trials: eleven configurations Ã— three matched seeds, randomized within each repetition. Every trial used 30s warm-up and 100s measurement, 60 offered RPS, a 300ms latency target, and a backend capacity change of 4â†’1â†’4 workers. Static rates (24/36 RPS) came from an independent calibration. All 198,000 measured arrivals launched; there were no model fallbacks or unknown-admission failures.
+The main **real HTTP/Redis** study completed 33 trials: eleven configurations × three matched seeds, randomized within each repetition. Every trial used 30s warm-up and 100s measurement, 60 offered RPS, a 300ms latency target, and a backend capacity change of 4→1→4 workers. Static rates (24/36 RPS) came from an independent calibration. All 198,000 measured arrivals launched; there were no model fallbacks or unknown-admission failures.
 
 **Goodput** means successful requests completed within the end-user latency target per measured second. Fast 429 responses are excluded from successful-response latency. Intervals describe run-to-run uncertainty for fixed trained models, not retraining uncertainty.
 
-| Controller | Goodput RPS Â± 95% t interval | Success RPS | Success p95 / p99 ms | Backend errors / offered | Rejected / offered |
+| Controller | Goodput RPS ± 95% t interval | Success RPS | Success p95 / p99 ms | Backend errors / offered | Rejected / offered |
 |---|---:|---:|---:|---:|---:|
-| No limiter | 22.35 Â± 3.95 | 34.74 | 848.9 / 912.0 | 42.10% | 0.00% |
-| Token Bucket Â· low | 18.91 Â± 0.13 | 20.94 | 885.3 / 937.4 | 4.42% | 60.67% |
-| Token Bucket Â· high | 28.44 Â± 0.11 | 30.49 | 854.0 / 930.0 | 8.36% | 40.82% |
-| Sliding Window Â· low | 18.15 Â± 0.09 | 20.18 | 885.3 / 932.7 | 4.12% | 62.26% |
-| Sliding Window Â· high | 26.79 Â± 0.36 | 28.85 | 864.9 / 937.3 | 7.63% | 44.29% |
-| EWMA + AIMD | 18.16 Â± 1.77 | 19.59 | 381.5 / 906.7 | 1.56% | 65.79% |
-| Prediction + AIMD | 21.60 Â± 1.09 | 23.03 | 323.1 / 833.3 | 1.04% | 60.58% |
-| PPO Â· gateway | 28.75 Â± 0.80 | 30.12 | 291.7 / 891.0 | 1.34% | 48.46% |
-| PPO + safety | 28.35 Â± 0.47 | 29.72 | 292.0 / 878.0 | 1.09% | 49.37% |
-| PPO Â· backend telemetry | 28.05 Â± 0.97 | 29.10 | 254.3 / 875.0 | 0.80% | 50.70% |
-| PPO + prediction + safety | 28.70 Â± 1.76 | 30.44 | 323.8 / 875.0 | 1.29% | 47.97% |
+| No limiter | 22.35 ± 3.95 | 34.74 | 848.9 / 912.0 | 42.10% | 0.00% |
+| Token Bucket · low | 18.91 ± 0.13 | 20.94 | 885.3 / 937.4 | 4.42% | 60.67% |
+| Token Bucket · high | 28.44 ± 0.11 | 30.49 | 854.0 / 930.0 | 8.36% | 40.82% |
+| Sliding Window · low | 18.15 ± 0.09 | 20.18 | 885.3 / 932.7 | 4.12% | 62.26% |
+| Sliding Window · high | 26.79 ± 0.36 | 28.85 | 864.9 / 937.3 | 7.63% | 44.29% |
+| EWMA + AIMD | 18.16 ± 1.77 | 19.59 | 381.5 / 906.7 | 1.56% | 65.79% |
+| Prediction + AIMD | 21.60 ± 1.09 | 23.03 | 323.1 / 833.3 | 1.04% | 60.58% |
+| PPO · gateway | 28.75 ± 0.80 | 30.12 | 291.7 / 891.0 | 1.34% | 48.46% |
+| PPO + safety | 28.35 ± 0.47 | 29.72 | 292.0 / 878.0 | 1.09% | 49.37% |
+| PPO · backend telemetry | 28.05 ± 0.97 | 29.10 | 254.3 / 875.0 | 0.80% | 50.70% |
+| PPO + prediction + safety | 28.70 ± 1.76 | 30.44 | 323.8 / 875.0 | 1.29% | 47.97% |
 
 ![All real controller comparisons](results/rl-upgrade/real-comparison.png)
 
-PPO + safety improved goodput over original AIMD by **10.19 Â± 1.34 RPS** (paired 95% t interval). Its difference from the higher static Token Bucket was **âˆ’0.08 Â± 0.49 RPS**, which is inconclusive. The observed backend error rate was **1.09% versus 8.36%** for that static budget. PPO therefore showed a useful throughput/error tradeoff here, rather than a demonstrated throughput win over every static policy.
+PPO + safety improved goodput over original AIMD by **10.19 ± 1.34 RPS** (paired 95% t interval). Its difference from the higher static Token Bucket was **−0.08 ± 0.49 RPS**, which is inconclusive. The observed backend error rate was **1.09% versus 8.36%** for that static budget. PPO therefore showed a useful throughput/error tradeoff here, rather than a demonstrated throughput win over every static policy.
 
-**Negative results:** PPO + safety changed budgets more often: mean absolute log budget change 0.118 versus 0.071 for original AIMD. Preserved relative recovery averaged 36.7s versus 23.3s. Recovery uses 80% of each controllerâ€™s own pre-degradation goodput, so the absolute thresholds differ. Both results are retained; RL did not improve every objective. Tail latency still exceeded the target during degradation.
+**Negative results:** PPO + safety changed budgets more often: mean absolute log budget change 0.118 versus 0.071 for original AIMD. Preserved relative recovery averaged 36.7s versus 23.3s. Recovery uses 80% of each controller’s own pre-degradation goodput, so the absolute thresholds differ. Both results are retained; RL did not improve every objective. Tail latency still exceeded the target during degradation.
 
 ### Stronger conventional baseline: separate supplemental study
 
-A 16-setting AIMD search used only validation scenarios, selecting a 2s window, EWMA Î±=0.5, one healthy evaluation, +5 RPS recovery steps and ten observations. The original baseline was preserved. Three later HTTP trials averaged **25.28 Â± 0.93 goodput RPS**, closing much of the gap to PPO. These later runs were not interleaved with the main study, so host/time ordering is a possible confound. They retained 28 missed launches (0.47% in one trial, below the preset 1% limit) and one client transport failure with unknown admission; neither earns goodput.
+A 16-setting AIMD search used only validation scenarios, selecting a 2s window, EWMA α=0.5, one healthy evaluation, +5 RPS recovery steps and ten observations. The original baseline was preserved. Three later HTTP trials averaged **25.28 ± 0.93 goodput RPS**, closing much of the gap to PPO. These later runs were not interleaved with the main study, so host/time ordering is a possible confound. They retained 28 missed launches (0.47% in one trial, below the preset 1% limit) and one client transport failure with unknown admission; neither earns goodput.
 
 <details><summary>Recovery, fairness, stability, and inference overhead</summary>
 
@@ -59,16 +59,16 @@ Values are means of per-run statistics. Recovery is conditional on recovery bein
 
 | Controller | Relative recovery s (n/3) | Jain fairness | SLO-violating seconds | Log budget change | Inference p95 ms | Gateway RSS p95 MB |
 |---|---:|---:|---:|---:|---:|---:|
-| No limiter | Not observed (0/3) | 0.99878 | 99.0 | 0.000 | â€” | â€” |
-| Token Bucket Â· low | 15.0 (3/3) | 0.99991 | 20.7 | 0.000 | â€” | â€” |
-| Token Bucket Â· high | 15.0 (3/3) | 0.99995 | 20.0 | 0.000 | â€” | â€” |
-| Sliding Window Â· low | 15.0 (3/3) | 0.99992 | 20.3 | 0.000 | â€” | â€” |
-| Sliding Window Â· high | 15.0 (3/3) | 0.99997 | 20.7 | 0.000 | â€” | â€” |
-| EWMA + AIMD | 23.3 (3/3) | 0.99996 | 15.0 | 0.071 | â€” | 71.9 |
+| No limiter | Not observed (0/3) | 0.99878 | 99.0 | 0.000 | — | — |
+| Token Bucket · low | 15.0 (3/3) | 0.99991 | 20.7 | 0.000 | — | — |
+| Token Bucket · high | 15.0 (3/3) | 0.99995 | 20.0 | 0.000 | — | — |
+| Sliding Window · low | 15.0 (3/3) | 0.99992 | 20.3 | 0.000 | — | — |
+| Sliding Window · high | 15.0 (3/3) | 0.99997 | 20.7 | 0.000 | — | — |
+| EWMA + AIMD | 23.3 (3/3) | 0.99996 | 15.0 | 0.071 | — | 71.9 |
 | Prediction + AIMD | 27.5 (2/3) | 0.99996 | 16.7 | 0.074 | 1.513 | 171.3 |
-| PPO Â· gateway | 30.0 (3/3) | 0.99998 | 16.3 | 0.120 | 0.128 | 72.9 |
+| PPO · gateway | 30.0 (3/3) | 0.99998 | 16.3 | 0.120 | 0.128 | 72.9 |
 | PPO + safety | 36.7 (3/3) | 0.99999 | 17.3 | 0.118 | 0.133 | 72.6 |
-| PPO Â· backend telemetry | 26.7 (3/3) | 0.99999 | 11.7 | 0.122 | 0.136 | 72.3 |
+| PPO · backend telemetry | 26.7 (3/3) | 0.99999 | 11.7 | 0.122 | 0.136 | 72.3 |
 | PPO + prediction + safety | 26.7 (3/3) | 0.99997 | 20.3 | 0.115 | 1.593 | 171.4 |
 
 </details>
@@ -77,29 +77,29 @@ Values are means of per-run statistics. Recovery is conditional on recovery bein
 
 Time-series illustrations use the prespecified first seed, not a selected best run. [Offered/admitted/successful traffic](results/rl-upgrade/real-traffic.png) and [actual safety overrides](results/rl-upgrade/safety.png) are also saved.
 
-### Held-out simulator comparison â€” separate evidence
+### Held-out simulator comparison — separate evidence
 
-600 episodes cover twelve variants Ã— ten workload families Ã— five matched seeds, each 180s with 30s warm-up. Workloads include steady traffic, ramps, falling demand, bursts, overload, sudden/gradual degradation, fairness, aggressive clients, and unseen combinations. A separate 50-episode tuned-AIMD comparison uses the same scenario seeds. These are simulator outcomes, not proof of real deployment performance.
+600 episodes cover twelve variants × ten workload families × five matched seeds, each 180s with 30s warm-up. Workloads include steady traffic, ramps, falling demand, bursts, overload, sudden/gradual degradation, fairness, aggressive clients, and unseen combinations. A separate 50-episode tuned-AIMD comparison uses the same scenario seeds. These are simulator outcomes, not proof of real deployment performance.
 
 | Controller | Mean simulator goodput RPS across the balanced workload families |
 |---|---:|
 | No limiter | 23.38 |
-| Token Bucket Â· low | 19.29 |
-| Token Bucket Â· high | 27.14 |
-| Sliding Window Â· low | 18.84 |
-| Sliding Window Â· high | 26.29 |
+| Token Bucket · low | 19.29 |
+| Token Bucket · high | 27.14 |
+| Sliding Window · low | 18.84 |
+| Sliding Window · high | 26.29 |
 | EWMA + AIMD | 21.93 |
-| AIMD Â· validation-tuned | 26.85 |
+| AIMD · validation-tuned | 26.85 |
 | Prediction + AIMD | 23.74 |
-| PPO Â· gateway | 31.18 |
+| PPO · gateway | 31.18 |
 | PPO + safety | 31.01 |
-| PPO Â· backend telemetry | 30.82 |
+| PPO · backend telemetry | 30.82 |
 | PPO + prediction | 31.32 |
 | PPO + prediction + safety | 31.06 |
 
 ![Goodput by controller and workload family](results/rl-upgrade/simulator.png)
 
-Prediction and backend instrumentation added little simulator goodput over gateway-only PPO. The controlled HTTP fidelity sweep matched throughput within about 2%, but simulated successful p95 was 11â€“34ms too low. This is a useful coarse simulator, not a validated model of arbitrary external APIs. [Fidelity comparison](results/rl-upgrade/fidelity.png).
+Prediction and backend instrumentation added little simulator goodput over gateway-only PPO. The controlled HTTP fidelity sweep matched throughput within about 2%, but simulated successful p95 was 11–34ms too low. This is a useful coarse simulator, not a validated model of arbitrary external APIs. [Fidelity comparison](results/rl-upgrade/fidelity.png).
 
 ### Training, forecasting, and hardware comparisons
 
@@ -115,7 +115,7 @@ Each selected PPO variant trained for 131,072 transitions using two 64-unit Tanh
 
 CUDA was available on the RTX 4070 SUPER, but **CPU with four subprocess environments was faster for this modest MLP** and was used for training. These are single throughput probes, not repeated speed claims. Live actor inference uses NumPy, never loads Torch on the request path, and matched PPO checkpoint actions on 1,000 checked observations per actor.
 
-The optional calibrated gradient-boosted predictor achieved held-out AUC **0.9899**, average precision **0.9601**, and Brier **0.0184**, versus **0.0283** for current-health persistence and **0.1065** for constant prevalence. Good forecast quality did not establish a clear hybrid control advantage. [Predictor calibration](results/rl-upgrade/prediction.png) Â· [Reward components](results/rl-upgrade/reward-components.png).
+The optional calibrated gradient-boosted predictor achieved held-out AUC **0.9899**, average precision **0.9601**, and Brier **0.0184**, versus **0.0283** for current-health persistence and **0.1065** for constant prevalence. Good forecast quality did not establish a clear hybrid control advantage. [Predictor calibration](results/rl-upgrade/prediction.png) · [Reward components](results/rl-upgrade/reward-components.png).
 
 **Known limits:** one selected training seed per variant; one backend and host; limited real workload coverage; fixed client shares; a minimum rate that can exceed severely degraded capacity; higher PPO oscillation; and idle/low-demand budget inflation. The full five-minute real multi-workload matrix and independent retraining seeds have not run. Docker configuration is checked; a complete local Docker/Grafana run was unavailable.
 
@@ -184,7 +184,7 @@ uv run rlrc suite --scenarios demo --repetitions 1 --rates 90 150 --scale 0.15 -
 
 Scaling shortens time, not request rates. Very short runs cannot establish controller quality or meaningful tail behavior. The report is under the suite's `evaluation/` directory. Output directories must be new: the CLI refuses to overwrite existing runs.
 
-If this host cannot sustain the default offered rates, use `configs/portable.yaml` with the `portable-demo` scenario. It slows the backend so 30Ã¢â‚¬â€œ100 RPS can still cause actual overload. In PowerShell:
+If this host cannot sustain the default offered rates, use `configs/portable.yaml` with the `portable-demo` scenario. It slows the backend so 30–100 RPS can still cause actual overload. In PowerShell:
 
 ```powershell
 $env:RLRC_CONFIG = 'configs/portable.yaml'

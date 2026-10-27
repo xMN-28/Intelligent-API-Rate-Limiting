@@ -40,7 +40,7 @@ uv run rlrc serve backend
 uv run rlrc serve gateway
 ```
 
-The default RL profile is `rl_safe`, 20 initial RPS, a 10â€“120 RPS range, a 300ms
+The default RL profile is `rl_safe`, 20 initial RPS, a 10–120 RPS range, a 300ms
 latency target, four 100ms workers, an eight-request queue and a 64-request gateway
 in-flight ceiling. Its configuration must match the model's saved normalization.
 The trained variants require a one-second control interval; changing it triggers
@@ -119,7 +119,7 @@ backend-telemetry dropout does not perturb exogenous episode-seed generation.
 
 Fidelity was tested with real HTTP at 10/20/30/40/60 RPS and a separate worker-drop
 and recovery trace. Nominal simulator throughput agrees within about 2% on that
-sweep; successful p95 is approximately 11â€“34ms too low. Fixed 5ms transport overhead,
+sweep; successful p95 is approximately 11–34ms too low. Fixed 5ms transport overhead,
 OS scheduling, FIFO approximation and uniform/lognormal service distributions are
 limitations. This is not a calibrated digital twin of an arbitrary upstream.
 
@@ -162,11 +162,11 @@ completions, and `J` Jain's successful-throughput fairness score. Define
 
 ```text
 reward = G / D
-       - 0.70 Ã— L / D
-       - 2.00 Ã— (E + T) / D
-       - 0.03 Ã— rejected / max(1, O)
-       - 0.02 Ã— abs(u)
-       - 0.02 Ã— (1 - J)          [equal-demand clients with >=6 successes only]
+       - 0.70 × L / D
+       - 2.00 × (E + T) / D
+       - 0.03 × rejected / max(1, O)
+       - 0.02 × abs(u)
+       - 0.02 × (1 - J)          [equal-demand clients with >=6 successes only]
 ```
 
 Completions are delayed events; merely admitting requests earns no reward.
@@ -202,11 +202,11 @@ GAE lambda 0.95 and entropy coefficient 0.01. Remaining defaults follow pinned S
 2.7.0. Four subprocess workers were faster than serial/DummyVecEnv and CUDA on the
 measured small-MLP workload. There is no reason to fill 12GB VRAM for this network.
 
-Six fixed validation seeds 20001â€“20006 select the best checkpoint. Selection score
-is validation goodput RPS minus `10 Ã— backend-error/offered fraction` minus
-`5 Ã— violating-seconds / measured-seconds`. It is separate from the training reward.
+Six fixed validation seeds 20001–20006 select the best checkpoint. Selection score
+is validation goodput RPS minus `10 × backend-error/offered fraction` minus
+`5 × violating-seconds / measured-seconds`. It is separate from the training reward.
 The best checkpoint can precede the final training transition. Final simulator
-tests use seeds 40000â€“40004 and HTTP tests use 81000â€“81002. Evaluation never trains
+tests use seeds 40000–40004 and HTTP tests use 81000–81002. Evaluation never trains
 the actor or updates normalization.
 
 Resume weights and optimizer state into a new output directory:
@@ -253,8 +253,8 @@ The fixed in-flight ceiling and global/client enforcement remain in every mode.
 
 The histogram gradient-boosted classifier estimates the risk of a latency/failure
 threshold violation in any of the next three intervals. It uses 100 fitting
-scenarios (seeds 1000â€“1099), separate sigmoid-calibration scenarios 30000â€“30019,
-and test scenarios 50000â€“50019. Neighboring rows from a trajectory never cross
+scenarios (seeds 1000–1099), separate sigmoid-calibration scenarios 30000–30019,
+and test scenarios 50000–50019. Neighboring rows from a trajectory never cross
 these groups. AUC, average precision, Brier and reliability curves are retained.
 
 The target describes future outcomes under a sampled behavior policy. It is not
